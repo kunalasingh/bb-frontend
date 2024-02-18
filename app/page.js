@@ -24,7 +24,7 @@ export default function Home() {
   }, [])
   return (
     <main>
-      <h1>hello world</h1>
+      <h1>good bye world</h1>
       {list.map(el => <h1 key={el.id}>{el.name}</h1>)}
       <input title="what you looking"></input>
     </main>
