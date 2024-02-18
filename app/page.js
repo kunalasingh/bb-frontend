@@ -60,7 +60,9 @@ function SearchBox({ people, setFilteredPeople }) {
     const filteredPeople = people.filter((person) => {
       return (
         person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        person.profession.toLowerCase().includes(searchTerm.toLowerCase())
+        person.profession.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        person.city.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        person.email.toLowerCase().includes(searchTerm.toLowerCase())
         // Add more conditions for searching by location or other fields if needed
       );
     });
@@ -88,18 +90,14 @@ export default function Home() {
   const [filteredPeople, setFilteredPeople] = useState([]);
   const [buttonTitle, setButtonTitle] = useState("Find People");
 
-  // Function to shuffle the array
   const shuffleArray = (array) => {
     let currentIndex = array.length,
       randomIndex;
 
-    // While there remain elements to shuffle.
     while (currentIndex !== 0) {
-      // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
 
-      // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex],
         array[currentIndex],
@@ -114,6 +112,7 @@ export default function Home() {
       const res = await axios.get(
         "https://65d24b62987977636bfc37b2.mockapi.io/api/v1/people"
       );
+      setPeople(res.data);
       const shuffledPeople = shuffleArray(res.data);
       setPeople(shuffledPeople.slice(0, 10)); // Set only 10 random people
       setFilteredPeople(shuffledPeople.slice(0, 10)); // Set filtered people initially
@@ -130,7 +129,7 @@ export default function Home() {
 
   return (
     <Box>
-      <AppBar position="static" sx={{ marginBottom: "20px" }}>
+      <AppBar position="static" >
         <Toolbar sx={{ justifyContent: "center" }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Networking and Opportunity Finder
