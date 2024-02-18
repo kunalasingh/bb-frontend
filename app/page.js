@@ -1,9 +1,21 @@
-"use client"
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useState } from "react";
 import axios from "axios";
-import { AppBar, Toolbar, Typography, Button, Card, Container, Avatar, Box, Grid, CardContent, TextField } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Card,
+  Container,
+  Avatar,
+  Box,
+  Grid,
+  CardContent,
+  TextField,
+} from "@mui/material";
 
-function ProfileCard({ name, profilePic, email, profession, contactNumber }) {
+function ProfileCard({ name, profilePic, email, profession, city, contactNumber }) {
   return (
     <Card
       sx={{
@@ -16,12 +28,19 @@ function ProfileCard({ name, profilePic, email, profession, contactNumber }) {
       }}
     >
       <CardContent sx={{ textAlign: "center", color: "#FFFFFF" }}>
-        <Avatar alt={name} src={profilePic} sx={{ width: 56, height: 56, margin: "0 auto 10px" }} />
+        <Avatar
+          alt={name}
+          src={profilePic}
+          sx={{ width: 56, height: 56, margin: "0 auto 10px" }}
+        />
         <Typography gutterBottom variant="h5" component="div">
           {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {profession}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {city}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ marginTop: "8px" }}>
           {email}
@@ -34,12 +53,18 @@ function ProfileCard({ name, profilePic, email, profession, contactNumber }) {
   );
 }
 
-function SearchBox() {
-  const [searchTerm, setSearchTerm] = useState('');
+function SearchBox({ people, setFilteredPeople }) {
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {
-    console.log('Searching for:', searchTerm);
-    // Implement your search logic here
+    const filteredPeople = people.filter((person) => {
+      return (
+        person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        person.profession.toLowerCase().includes(searchTerm.toLowerCase())
+        // Add more conditions for searching by location or other fields if needed
+      );
+    });
+    setFilteredPeople(filteredPeople);
   };
 
   return (
@@ -51,18 +76,22 @@ function SearchBox() {
         onChange={(e) => setSearchTerm(e.target.value)}
         sx={{ marginRight: 1 }}
       />
-      <Button variant="contained" onClick={handleSearch}>Search</Button>
+      <Button variant="contained" onClick={handleSearch}>
+        Search
+      </Button>
     </Box>
   );
 }
 
 export default function Home() {
   const [people, setPeople] = useState([]);
-  const [buttonTitle, setButtonTitle] = useState('Find People');
+  const [filteredPeople, setFilteredPeople] = useState([]);
+  const [buttonTitle, setButtonTitle] = useState("Find People");
 
   // Function to shuffle the array
   const shuffleArray = (array) => {
-    let currentIndex = array.length, randomIndex;
+    let currentIndex = array.length,
+      randomIndex;
 
     // While there remain elements to shuffle.
     while (currentIndex !== 0) {
@@ -72,7 +101,9 @@ export default function Home() {
 
       // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+        array[randomIndex],
+        array[currentIndex],
+      ];
     }
 
     return array;
@@ -80,20 +111,22 @@ export default function Home() {
 
   const getData = async () => {
     try {
-      const res = await axios.get("https://65d24b62987977636bfc37b2.mockapi.io/api/v1/people");
+      const res = await axios.get(
+        "https://65d24b62987977636bfc37b2.mockapi.io/api/v1/people"
+      );
       const shuffledPeople = shuffleArray(res.data);
       setPeople(shuffledPeople.slice(0, 10)); // Set only 10 random people
+      setFilteredPeople(shuffledPeople.slice(0, 10)); // Set filtered people initially
       setButtonTitle("Refresh");
     } catch (err) {
       console.log(err);
     }
-  }
-
+  };
 
   const onClickHandler = (e) => {
     e.preventDefault();
     getData();
-  }
+  };
 
   return (
     <Box>
@@ -104,22 +137,29 @@ export default function Home() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container >
-        <Box sx={{display:"flex",justifyContent:"center", alignItems:"center" }}>
-        <Button variant="contained" onClick={onClickHandler} sx={{ marginBottom: "20px" }}>
-          {buttonTitle}
-        </Button>
-        <SearchBox />
+      <Container>
+        <Box
+          sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        >
+          <Button
+            variant="contained"
+            onClick={onClickHandler}
+            sx={{ marginBottom: "20px" }}
+          >
+            {buttonTitle}
+          </Button>
+          <SearchBox people={people} setFilteredPeople={setFilteredPeople} />
         </Box>
         <Grid container spacing={2}>
-          {people.map((ele) => (
+          {filteredPeople.map((ele) => (
             <Grid item xs={12} key={ele.id}>
               <ProfileCard
                 name={ele.name}
                 profilePic={ele.image}
                 email={ele.email}
                 profession={ele.profession}
-                contactNumber={ele.contactNumber} 
+                contactNumber={ele.contactNumber}
+                city={ele.city}
               />
             </Grid>
           ))}
