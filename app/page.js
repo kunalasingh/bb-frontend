@@ -20,18 +20,18 @@ function ProfileCard({ name, profilePic, email, profession, city, contactNumber 
     <Card
       sx={{
         maxWidth: 345,
-        background: "linear-gradient(145deg, #6e48aa, #9d50bb)",
+        background: "linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)",
         borderRadius: "20px",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
         margin: "auto",
-        marginBottom: "20px", // Adds bottom margin to each card
+        marginBottom: "20px",
       }}
     >
       <CardContent sx={{ textAlign: "center", color: "#FFFFFF" }}>
         <Avatar
           alt={name}
           src={profilePic}
-          sx={{ width: 56, height: 56, margin: "0 auto 10px" }}
+          sx={{ width: 86, height: 86, margin: "0 auto 10px" }}
         />
         <Typography gutterBottom variant="h5" component="div">
           {name}
@@ -130,7 +130,7 @@ export default function Home() {
   return (
     <Box>
       <AppBar position="static" >
-        <Toolbar sx={{ justifyContent: "center" }}>
+        <Toolbar sx={{ justifyContent: "center", textAlign: "center" }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Networking and Opportunity Finder
           </Typography>
