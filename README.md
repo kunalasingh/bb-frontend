@@ -10,6 +10,7 @@ Networking and Opportunity Finder
 ## Project Description
 
 Search people in your area with similar interest.
+
 This website helps meet and connect with professionals or like-minded individuals. This facilitates meeting with new people that you don't know and could facilitate job openings or recruiters
 
 ## Technologies Used
