@@ -28,4 +28,4 @@ This website helps meet and connect with professionals or like-minded individual
 
 2. ![find people](<Screenshot 2024-02-18 at 7.09.39 PM.png>)
 
-3. ![alt text](<Screenshot 2024-02-18 at 7.10.29 PM.png>)
+3. ![alt text](<Screenshot 2024-02-18 at 7.36.36 PM.png>)
