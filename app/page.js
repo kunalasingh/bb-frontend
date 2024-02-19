@@ -158,7 +158,7 @@ export default function Home() {
                 email={ele.email}
                 profession={ele.profession}
                 contactNumber={ele.contactNumber}
-                city={ele.city}
+                city="Boston"
               />
             </Grid>
           ))}
