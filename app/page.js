@@ -143,7 +143,7 @@ export default function Home() {
           <Button
             variant="contained"
             onClick={onClickHandler}
-            sx={{ marginBottom: "20px" }}
+            sx={{ marginBottom: "20px", alignSelf: "center" }}
           >
             {buttonTitle}
           </Button>
