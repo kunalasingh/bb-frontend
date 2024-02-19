@@ -116,7 +116,7 @@ export default function Home() {
       const shuffledPeople = shuffleArray(res.data);
       // setPeople(shuffledPeople.slice(0, 10)); // Set only 10 random people
       setFilteredPeople(shuffledPeople.slice(0, 10)); // Set filtered people initially
-      setButtonTitle("Refresh");
+      setButtonTitle("Find Now!");
     } catch (err) {
       console.log(err);
     }
