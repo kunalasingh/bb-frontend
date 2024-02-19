@@ -20,8 +20,7 @@ This website helps meet and connect with professionals or like-minded individual
 3. Axios (https://axios-http.com/docs/intro)
 4. Material UI (https://mui.com/material-ui/)
 5. Vercel (https://vercel.com)
-
-##Usage Instructions
+6. mockAPI (https://mockapi.io/)
 
 ## Screenshots
 
