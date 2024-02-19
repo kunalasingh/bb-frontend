@@ -14,11 +14,11 @@ This website helps meet and connect with professionals or like-minded individual
 
 ## Technologies Used
 
-React.js (https://react.dev/)
-next.js (https://nextjs.org/)
-Axios (https://axios-http.com/docs/intro)
-Material UI (https://mui.com/material-ui/)
-Vercel (https://vercel.com)
+1. React.js (https://react.dev/)
+2. next.js (https://nextjs.org/)
+3. Axios (https://axios-http.com/docs/intro)
+4. Material UI (https://mui.com/material-ui/)
+5. Vercel (https://vercel.com)
 
 ##Usage Instructions
 
